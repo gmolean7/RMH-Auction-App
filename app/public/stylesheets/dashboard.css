@@ -9,7 +9,7 @@ body, html {
 .banner {
     background-image: url("/images/rmh_new_house.png");
     mix-blend-mode: multiply;
-    filter: blur(7px) brightness(50%);
+    filter: blur(7px) brightness(30%);
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -20,12 +20,12 @@ body, html {
 .banner-text {
     text-align: center;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 25%;
+    left: 25%;
+    transform: translate(-15%, 50%);
     color: white;
 }
 
 .banner-text h1 {
-    font-size: 1200%;
+    font-size: 1500%;
 }

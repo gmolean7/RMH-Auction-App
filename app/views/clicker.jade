@@ -4,12 +4,30 @@ block content
   h1 Round: $#{round}
 
   h2 Count: 
-    span 3
+    span(id="count") #{count}
+
   p(class="btn-block")
-    button(class="btn-b btn-lg smooth")
+    button(class="btn-b btn-lg smooth", id="btnAddOne")
         span(class="font-large") +
   p(class="btn-block bottom")
-     button(class="btn-c btn-lg smooth")
+     button(class="btn-c btn-lg smooth", id="btnSubtractOne")
         span(class="font-large") -
 
-    
+  script.
+    $(function() {
+      $('#btnAddOne').click(function(event) {
+        event.preventDefault();
+        $.post('/clicker/addOne', {}, function(resp) {
+          updateCount(resp.count);
+        });
+      });
+      $('#btnSubtractOne').click(function(event) {
+        event.preventDefault();
+        $.post('/clicker/subtractOne', {}, function(resp) {
+          updateCount(resp.count);
+        });
+      });
+    });
+    function updateCount(count) {
+      $('#count').text(count);
+    }
