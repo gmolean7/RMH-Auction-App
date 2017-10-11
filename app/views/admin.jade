@@ -7,19 +7,33 @@ block content
 
   for round in rounds
     if round == currRound
-      h2(class="active") #{currencyFormmatter.format(round, { code: 'USD', precision: 0 })}
+      h2(class="active", id="#{round}") #{currencyFormmatter.format(round, { code: 'USD', precision: 0 })}
     else 
-      h2 #{currencyFormmatter.format(round, { code: 'USD', precision: 0 })}
+      h2(id="#{round}") #{currencyFormmatter.format(round, { code: 'USD', precision: 0 })}
 
-  button(class="btn btn-a btn-lg smooth", onclick="previousRound()") Previous Round
-  button(class="btn btn-a btn-lg smooth", onclick="nextRound()") Next Round
+  button(class="btn btn-a btn-lg smooth", id="btnPrevRound") Previous Round
+  button(class="btn btn-a btn-lg smooth", id="btnNextRound") Next Round
 
   h2 Total Donations: #{currencyFormmatter.format(totalDonations, { code: 'USD', precision: 0 })}
 
   script.
-    function nextRound() {
-      window.location.href = '/admin/nextRound'
-    }
-    function previousRound() {
-       window.location.href = '/admin/prevRound'
+    $(function() {
+      $('#btnPrevRound').click(function(event) {
+        event.preventDefault();
+        $.post('/admin/prevRound', {}, function(resp) {
+          updateActiveRound(resp.currRound);
+        });
+      });
+      $('#btnNextRound').click(function(event) {
+        event.preventDefault();
+        $.post('/admin/nextRound', {}, function(resp) {
+          updateActiveRound(resp.currRound);
+        });
+      });
+    });
+    function updateActiveRound(currRound) {
+        //remove active class from all
+        $('.active').removeClass('active');
+        //update active round
+        $('#' + currRound).addClass('active');
     }

@@ -1,3 +1,4 @@
 /app/node_modules/*
 npm-debug.log
 /.vscode/*
+/app/bower_components/*
