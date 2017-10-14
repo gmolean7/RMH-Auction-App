@@ -3,7 +3,7 @@ var router = express.Router();
 var currencyFormmatter = require('currency-formatter');
 var _ = require('lodash');
 
-const rounds = [10000, 5000, 2500, 2000, 1500, 1000, 500];
+const rounds = [10000, 5000, 2500, 1000, 500, 145];
 var currRound = rounds[0];
 
 router.get('/', function(req, res, next) {

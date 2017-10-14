@@ -1,15 +1,16 @@
 extends layout
 
 block content
-  h1 Round: $#{round}
+  p(class="title-block")
+    span(class="count") Count: 
+      span(id="count") #{count}
+    span(class="round") Round: $#{round}
 
-  h2 Count: 
-    span(id="count") #{count}
 
   p(class="btn-block")
     button(class="btn-b btn-lg smooth", id="btnAddOne")
         span(class="font-large") +
-  p(class="btn-block bottom")
+  p(class="btn-block")
      button(class="btn-c btn-lg smooth", id="btnSubtractOne")
         span(class="font-large") -
 
@@ -31,3 +32,9 @@ block content
     function updateCount(count) {
       $('#count').text(count);
     }
+    $('.no-zoom').bind('touchend', function(e) {
+      e.preventDefault();
+      // Add your code here. 
+      $(this).click();
+      // This line still calls the standard click event, in case the user needs to interact with the element that is being clicked on, but still avoids zooming in cases of double clicking.
+    });
