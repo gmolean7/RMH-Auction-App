@@ -4,7 +4,8 @@ block content
   p(class="title-block")
     span(class="count") Count: 
       span(id="count") #{count}
-    span(class="round") Round: $#{round}
+    span(class="round") Round: 
+      span(id="round") $#{round}
 
 
   p(class="btn-block")
@@ -37,4 +38,11 @@ block content
       // Add your code here. 
       $(this).click();
       // This line still calls the standard click event, in case the user needs to interact with the element that is being clicked on, but still avoids zooming in cases of double clicking.
+    });
+    $(function() {
+      // wrap this in a setInterval
+
+      $.get('/admin/currentRound', function(resp) {
+        
+      });
     });
