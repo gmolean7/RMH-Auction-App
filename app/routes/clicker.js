@@ -4,8 +4,8 @@ var router = express.Router();
 var count = 0;
 
 router.get('/', function(req, res, next) {
-    var round = 1500; // TODO: Get round from admin service
-    res.render('clicker', { round, count });
+    var round = 10000; // TODO: Get round from database using service
+    res.render('clicker', { round });
 });
 
 router.post('/addOne', function(req, res, next) {
