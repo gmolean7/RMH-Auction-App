@@ -4,4 +4,26 @@ block content
   div(class="banner")
   div(class="banner-text")
     //- img(src="/images/RMHC_baltimore_logo.jpg")
-    h1 Total Funds Raised: $#{totalDonations}!
+    h1 Total Funds Raised: $
+      span(class="total-donations") 0
+
+  script.
+    var currTotal = 0;
+    var prevTotal = 0;
+    setInterval(function(){
+      // replace this with a poll to get updated current total
+      prevTotal = currTotal;
+      currTotal = currTotal + 5000;
+      if(currTotal > prevTotal) { // if there's been a change in the total, let's animate
+        var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',');
+        $('.total-donations').prop('number', prevTotal).animateNumber(
+          {
+            number: currTotal,
+            numberStep: comma_separator_number_step
+          },
+          5000 //animation duration
+        );
+      }
+    }, 8000);
+
+  
