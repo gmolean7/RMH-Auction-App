@@ -1,11 +1,12 @@
 extends layout
 
 block content
+
   p(class="title-block")
     span(class="count") Count: 
-      span(id="count") #{count}
-    span(class="round") Round: $#{round}
-
+      span(id="count") 0
+    span(class="round") Round: 
+      span(id="round") loading...
 
   p(class="btn-block")
     button(class="btn-b btn-lg smooth", id="btnAddOne")
@@ -15,23 +16,46 @@ block content
         span(class="font-large") -
 
   script.
+    var theCount = 0;
+    var theRound = "#{round}";
+
+    $('#round').text(accounting.formatMoney(theRound, { precision: 0 }));
+    
     $(function() {
       $('#btnAddOne').click(function(event) {
         event.preventDefault();
         $.post('/clicker/addOne', {}, function(resp) {
-          updateCount(resp.count);
+          updateCount(++theCount);
         });
       });
       $('#btnSubtractOne').click(function(event) {
         event.preventDefault();
         $.post('/clicker/subtractOne', {}, function(resp) {
-          updateCount(resp.count);
+          if(theCount > 0) {
+            updateCount(--theCount);
+          }
         });
       });
+      setInterval(function() {
+        $.get('/admin/currentRound', function(resp) {
+          if(resp.currRound != theRound) { //new round seen
+            updateRound(resp.currRound);
+            updateCount(0);
+          }
+        });
+      }, 5000);
     });
+
     function updateCount(count) {
-      $('#count').text(count);
+      theCount = count;
+      $('#count').text(theCount);
     }
+
+    function updateRound(round) {
+       theRound = round;
+       $('#round').text(accounting.formatMoney(theRound, { precision: 0 }));
+    }
+
     $('.no-zoom').bind('touchend', function(e) {
       e.preventDefault();
       // Add your code here. 
