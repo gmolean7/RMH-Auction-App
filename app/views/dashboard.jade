@@ -11,19 +11,22 @@ block content
     var currTotal = 0;
     var prevTotal = 0;
     setInterval(function(){
-      // replace this with a poll to get updated current total
-      prevTotal = currTotal;
-      currTotal = currTotal + 5000;
-      if(currTotal > prevTotal) { // if there's been a change in the total, let's animate
-        var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',');
-        $('.total-donations').prop('number', prevTotal).animateNumber(
-          {
-            number: currTotal,
-            numberStep: comma_separator_number_step
-          },
-          5000 //animation duration
-        );
-      }
+      //poll to get updated current total
+      $.get('/clicker/currentTotal', {}, function(resp) {
+        prevTotal = currTotal;
+        currTotal = resp.currentTotal;
+
+        if(currTotal > prevTotal) { // if there's been a change in the total, let's animate
+          var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',');
+          $('.total-donations').prop('number', prevTotal).animateNumber(
+            {
+              number: currTotal,
+              numberStep: comma_separator_number_step
+            },
+            5000 //animation duration
+          );
+        }
+      });
     }, 8000);
 
   
