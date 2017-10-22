@@ -7,9 +7,9 @@ block content
 
   for round in rounds
     if round == currRound
-      h2(class="active", id="#{round}") #{currencyFormmatter.format(round, { code: 'USD', precision: 0 })}
+      h2(class="active", id=round) #{currencyFormmatter.format(round, { code: 'USD', precision: 0 })}
     else 
-      h2(id="#{round}") #{currencyFormmatter.format(round, { code: 'USD', precision: 0 })}
+      h2(id=round) #{currencyFormmatter.format(round, { code: 'USD', precision: 0 })}
 
   div(class="admin-btns")
     button(class="btn btn-sm btn-a smooth", id="btnPrevRound") Previous Round

@@ -1,22 +1,22 @@
 var express = require('express');
 var router = express.Router();
-var accounting = require('../libs/service-accounting');
+var db = require('../db/index');
 
 var count = 0;
 var currentTotal = 13000;
-var round = accounting.getCurrentRound(); // TODO: Get round from database
+var round = db.getCurrentRound();
 
 router.get('/', function(req, res, next) {
     res.render('clicker', { round, count });
 });
 
 router.get('/currentTotal', function(req, res, next) {
-    res.send({currentTotal: accounting.getCurrentTotal()})
+    res.send({currentTotal: db.getCurrentTotal()})
 });
 
 router.post('/addOne', function(req, res, next) {
     count++;
-    accounting.increaseTotal();
+    db.increaseTotal();
     res.send({count});
 });
 
