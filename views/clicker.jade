@@ -11,9 +11,9 @@ block content
   p(class="btn-block")
     button(class="btn-b btn-lg smooth", id="btnAddOne")
         span(class="font-large") +
-  p(class="btn-block")
-     button(class="btn-c btn-lg smooth", id="btnSubtractOne")
-        span(class="font-large") -
+  //- p(class="btn-block")
+  //-    button(class="btn-c btn-lg smooth", id="btnSubtractOne")
+  //-       span(class="font-large") -
 
   script.
     var theCount = 0;
@@ -28,14 +28,14 @@ block content
           updateCount(++theCount);
         });
       });
-      $('#btnSubtractOne').click(function(event) {
-        event.preventDefault();
-        $.post('/clicker/subtractOne', {}, function(resp) {
-          if(theCount > 0) {
-            updateCount(--theCount);
-          }
-        });
-      });
+      //- $('#btnSubtractOne').click(function(event) {
+      //-   event.preventDefault();
+      //-   $.post('/clicker/subtractOne', {}, function(resp) {
+      //-     if(theCount > 0) {
+      //-       updateCount(--theCount);
+      //-     }
+      //-   });
+      //- });
       setInterval(function() {
         $.get('/admin/currentRound', function(resp) {
           if(resp.currRound != theRound) { //new round seen

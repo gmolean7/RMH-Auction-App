@@ -1,24 +1,17 @@
-/* .btn-block {
-    width: 90%; */
-    /* height: 50%; */
-    /* position: fixed;
-  } */
-  
-  .btn-block button {
-    width: 100%;
-    height: 50%;
-    margin: 0;
-  }
-  
-  .font-large {
-    font-size: 500%;
-  }
+.btn-block button {
+  width: 100%;
+  margin: 0;
+}
 
-  .count {
-    font-size: 2.5em;
-  }
+.font-large {
+  font-size: 8em;
+}
 
-  .round {
-    margin-left: 50px;
-    font-size: 1.5em;
-  }
+.count {
+  font-size: 2.5em;
+}
+
+.round {
+  margin-left: 50px;
+  font-size: 1.5em;
+}
