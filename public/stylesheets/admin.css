@@ -1,3 +1,7 @@
 .active {
     border: solid;
 }
+
+.admin-btns button {
+    font-size: .8em;
+}

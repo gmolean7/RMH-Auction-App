@@ -11,10 +11,11 @@ block content
     else 
       h2(id="#{round}") #{currencyFormmatter.format(round, { code: 'USD', precision: 0 })}
 
-  button(class="btn btn-a btn-lg smooth", id="btnPrevRound") Previous Round
-  button(class="btn btn-a btn-lg smooth", id="btnNextRound") Next Round
-  hr
-  button(class="btn btn-b btn-sm", id="reset") Reset All
+  div(class="admin-btns")
+    button(class="btn btn-sm btn-a smooth", id="btnPrevRound") Previous Round
+    button(class="btn btn-sm btn-a smooth", id="btnNextRound") Next Round
+    hr
+    button(class="btn btn-b btn-sm", id="reset") Reset All
 
   script.
     $(function() {
