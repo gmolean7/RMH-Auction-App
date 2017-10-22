@@ -1,6 +1,5 @@
-/app/node_modules/*
+node_modules/*
 npm-debug.log
-/.vscode/*
-/app/bower_components/*
+.vscode/*
 .DS
 .DS_Store
